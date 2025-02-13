@@ -69,5 +69,10 @@ const outputFile = './swagger-output.json'
 const endpointsFiles = ['./src/endpoints.js']
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
-    require('./index')           // Your project's root file
-})
+    if (process.env.CI) {
+        console.log("Swagger documentation generated in CI/CD. Exiting...");
+        process.exit(0); // Prevents GitHub Actions from hanging
+    } else {
+        require('./index'); // Start server in local development
+    }
+});

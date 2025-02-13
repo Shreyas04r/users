@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Generate Swagger documentation
-        run: npm run start-gendoc
+        run: CI=true npm run start-gendoc
 
       - name: Deploy (Optional)
         run: echo "Deploy your application here"
